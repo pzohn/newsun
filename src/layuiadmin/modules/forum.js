@@ -67,6 +67,7 @@ layui.define(['table', 'form'], function(exports){
         type: 2
         ,title: '编辑商品信息'
         ,content: './listform.html'
+        // ,maxmin: true
         ,area: ['550px', '600px']
         ,btn: ['确定', '取消']
         ,resize: false
@@ -127,13 +128,15 @@ layui.define(['table', 'form'], function(exports){
           submit.trigger('click');
         }
         ,success: function(layero, index){
-          var mapType = new Map([['限时抢', 7], ['1元购', 8], ['新品特价', 9], ['教育教学',10], ['教育周边', 11], ['绿色农场', 12], ['健康养生', 13]]);
+          var mapType = new Map([['限时抢', 7], ['1元购', 8], ['新品特价', 9], ['教育教学',10], ['教育周边', 11], ['绿色农场', 12], ['健康养生', 13], ['公告中心', 14]]);
           var body = layer.getChildFrame('body', index);
           body.find("#shoping_name").val(obj.data.name);
           body.find("#shoping_price").val(obj.data.price);
           body.find("#shoping_royalty").val(obj.data.royalty);
           body.find("#shoping_integral").val(obj.data.integral);
           body.find("#shopping_type").val(mapType.get(obj.data.type));
+          body.find("#shoping_id").val(obj.data.id);
+          body.find("#shoping_item_id").hide();
           var flag = obj.data.flag;
           switch(flag) {
                case 0:
