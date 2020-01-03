@@ -67,7 +67,6 @@ layui.define(['table', 'form'], function(exports){
         type: 2
         ,title: '编辑商品信息'
         ,content: './listform.html'
-        // ,maxmin: true
         ,area: ['550px', '600px']
         ,btn: ['确定', '取消']
         ,resize: false
