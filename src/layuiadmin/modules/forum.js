@@ -29,7 +29,7 @@ layui.define(['table', 'form'], function(exports){
       ,{field: 'avatar', title: '标题图片', width: 100, templet: '#imgTpl'}
       ,{field: 'time', title: '更新时间', width: 180, sort: true}
       ,{field: 'flag', title: '标签', templet: '#buttonTpl', minWidth: 80, align: 'center'}
-      ,{field: 'flag1', title: '分享购', templet: '#buttonTpl1', minWidth: 50, align: 'center'}
+      // ,{field: 'flag1', title: '分享购', templet: '#buttonTpl1', minWidth: 50, align: 'center'}
       ,{title: '操作', width: 150, align: 'center', fixed: 'right', toolbar: '#table-forum-list'}
     ]]
     // ,page: true
@@ -37,12 +37,57 @@ layui.define(['table', 'form'], function(exports){
     // ,limits: [3, 6, 9, 12, 15]
     ,text: '对不起，加载出现异常！'
   });
+
+  //下架商品管理
+    table.render({
+    elem: '#LAY-app-forum-delllist'
+    ,method:'POST'
+    ,url: 'https://www.hattonstar.com/downGet?shop_id=2' //模拟接口
+    ,cols: [[
+      {type: 'checkbox', fixed: 'left'}
+      ,{field: 'id', width: 80, title: 'ID', sort: true}
+      ,{field: 'name', title: '商品名称'}
+      ,{field: 'type', title: '类型'}
+      ,{field: 'price', width: 80,title: '价格'}
+      ,{field: 'royalty', width: 80,title: '提成'}
+      ,{field: 'integral', width: 80,title: '积分'}
+      ,{field: 'avatar', title: '标题图片', width: 100, templet: '#imgTpl'}
+      ,{field: 'time', title: '更新时间', width: 180, sort: true}
+      ,{title: '操作', width: 150, align: 'center', fixed: 'right', toolbar: '#table-forum-list'}
+    ]]
+    ,text: '对不起，加载出现异常！'
+  });
   
+    table.on('tool(LAY-app-forum-delllist)', function(obj){
+    var data = obj.data;
+    if(obj.event === 'shopingup'){
+      layer.confirm('确定重新上架该商品？', function(index){
+        $.ajax({
+          type:'POST',
+          url:'https://www.hattonstar.com/shoppingUp',
+          dataType:'json',
+          data:{
+            id : data.id
+          },
+          success:function(data){
+            console.log("success");
+            obj.del();
+            layer.close(index);
+          },
+          error:function(hex){
+            console.log("错误返回");
+          }
+        }) 
+      });
+    }
+  });
+
+
   //监听工具条
   table.on('tool(LAY-app-forum-list)', function(obj){
     var data = obj.data;
     if(obj.event === 'del'){
-      layer.confirm('确定删除此商品？', function(index){
+      layer.confirm('确定下架此商品？', function(index){
         $.ajax({
           type:'POST',
           url:'https://www.hattonstar.com/shoppingOff',
