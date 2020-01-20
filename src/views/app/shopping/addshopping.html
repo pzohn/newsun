@@ -66,6 +66,13 @@
                 </div>
                 <div class="layui-input-inline layui-input-company"></div>
               </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">商品库存</label>
+                <div class="layui-input-inline" style="width: 80px;">
+                  <input type="text" name="shopping_stock" lay-verify="number" value="0" class="layui-input">
+                </div>
+                <div class="layui-input-inline layui-input-company"></div>
+              </div>
   <!--             <div class="layui-form-item">
                 <label class="layui-form-label">特殊说明</label>
                 <div class="layui-input-block">
@@ -255,6 +262,7 @@
         'type':obj.field.shopping_type,
         'royalty':obj.field.shopping_royalty,
         'integral':obj.field.shopping_integral,
+        'stock':obj.field.shopping_stock,
         'oper':'sun',
         'shop_id':2
       }

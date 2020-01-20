@@ -26,6 +26,7 @@ layui.define(['table', 'form'], function(exports){
       ,{field: 'price', width: 80,title: '价格'}
       ,{field: 'royalty', width: 80,title: '提成'}
       ,{field: 'integral', width: 80,title: '积分'}
+      ,{field: 'stock', width: 80,title: '库存'}
       ,{field: 'avatar', title: '标题图片', width: 100, templet: '#imgTpl'}
       ,{field: 'time', title: '更新时间', width: 180, sort: true}
       ,{field: 'flag', title: '标签', templet: '#buttonTpl', minWidth: 80, align: 'center'}
@@ -51,6 +52,7 @@ layui.define(['table', 'form'], function(exports){
       ,{field: 'price', width: 80,title: '价格'}
       ,{field: 'royalty', width: 80,title: '提成'}
       ,{field: 'integral', width: 80,title: '积分'}
+      ,{field: 'stock', width: 80,title: '库存'}
       ,{field: 'avatar', title: '标题图片', width: 100, templet: '#imgTpl'}
       ,{field: 'time', title: '更新时间', width: 180, sort: true}
       ,{title: '操作', width: 150, align: 'center', fixed: 'right', toolbar: '#table-forum-list'}
@@ -154,7 +156,8 @@ layui.define(['table', 'form'], function(exports){
                 good_switch : good_switch,
                 post_switch : post_switch,
                 share_switch: share_switch,
-                type : field.shopping_type
+                type : field.shopping_type,
+                stock : field.stock
               },
               success:function(data){
                 console.log("success");
@@ -178,6 +181,7 @@ layui.define(['table', 'form'], function(exports){
           body.find("#shoping_price").val(obj.data.price);
           body.find("#shoping_royalty").val(obj.data.royalty);
           body.find("#shoping_integral").val(obj.data.integral);
+          body.find("#shoping_stock").val(obj.data.stock);
           body.find("#shopping_type").val(mapType.get(obj.data.type));
           body.find("#shoping_id").val(obj.data.id);
           body.find("#shoping_item_id").hide();
